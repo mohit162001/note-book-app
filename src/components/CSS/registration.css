@@ -48,7 +48,7 @@
     margin: 5px 5px 5px 5px;
   }
   
-  button {
+  .resgistration-btn {
     width: 100%;
     padding: 10px;
    background: rgb(40, 158, 255) ;
@@ -59,7 +59,7 @@
     cursor: pointer;
   }
   
-  button:hover {
+  .resgistration-btn:hover {
     background: rgba(25, 100, 199, 0.774);
   }
   

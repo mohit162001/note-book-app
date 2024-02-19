@@ -3,7 +3,8 @@ import React from 'react'
 function RootPage() {
   return (
     <>
-    <div>root</div>
+    <div>Dashborad</div>
+    
     </>
   )
 }

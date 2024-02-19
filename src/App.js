@@ -3,8 +3,9 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import RootPage from './pages/RootPage.js'
 import LoginPage from './pages/LoginPage.js'
 import ResgistrationPage from './pages/RegistrationPage.js'
+import { checkAuth } from './helper.js'
 const router = createBrowserRouter([
-  {path:'/',element:<RootPage/>,children:[]},
+  {path:'/',element:<RootPage/>,loader:checkAuth,children:[]},
   {path:'/login',element:<LoginPage/>},
   {path:'/register',element:<ResgistrationPage/>}
 ])

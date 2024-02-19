@@ -1,9 +1,13 @@
 import React from "react";
 import "./CSS/login.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { storeData } from "../helper";
 
 
 function Login() {
+
+  const navigate = useNavigate();
+
   async function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -16,8 +20,35 @@ function Login() {
     if (userData.identifier === "" || userData.password === "") {
       window.alert('Please enter valid input')
     }
-    console.log(userData)
-    window.alert("submitted...!")
+    
+    if(userData.password !== "" && userData.identifier !==""){
+      try {
+        const response = await fetch("http://localhost:1337/api/auth/local",{
+          method:"POST",
+          headers:{
+            "Content-Type": "application/json",
+            "Authorization" : "bearer" 
+  
+          },
+          body:JSON.stringify(userData)
+        })
+        const resData = await response.json()
+        console.log(resData)
+        
+
+        if(!response.ok){
+          throw new Error("Something went wrong...!")
+        }else if(response.ok){
+          console.log("Login successfully")
+          storeData(resData)
+          setTimeout(() => {
+            navigate("/")
+          }, 1000);
+        }
+      } catch (error) {
+        window.alert(error) 
+      }
+    }
   }
   return (
     <>
@@ -44,7 +75,7 @@ function Login() {
               placeholder="password"
             />
           </div>
-          <button type="submit">Login</button>
+          <button type="submit" className="login-btn">Login</button>
           <p className="registration-message">
             New user ?
             <span>

@@ -37,7 +37,7 @@
     border-radius: 3px;
   }
   
-  button {
+  .login-btn {
     width: 100%;
     padding: 10px;
    background: rgb(40, 158, 255) ;
@@ -48,7 +48,7 @@
     cursor: pointer;
   }
   
-  button:hover {
+  .login-btn:hover {
     background: rgba(25, 100, 199, 0.774);
 
   }
