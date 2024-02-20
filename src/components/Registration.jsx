@@ -70,6 +70,7 @@ function Registration() {
   return (
     <>
       <div className="registration-container">
+        <div>
         <form className="registration-form" onSubmit={handleSubmit}>
           <h2>Registration</h2>
           <div className="form-group">
@@ -113,14 +114,16 @@ function Registration() {
             <span className="show-password">show password</span>
           </div>
           <button type="submit" className="resgistration-btn">Submit</button>
-          <p className="login-message">
+          
+        </form>
+        <p className="login-message">
             Already have account ?
             <span>
               <Link to="/login">Login</Link>
             </span>
             here
           </p>
-        </form>
+        </div>
       </div>
     </>
   );

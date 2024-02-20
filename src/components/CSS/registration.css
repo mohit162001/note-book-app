@@ -6,17 +6,19 @@
   }
   
   .registration-form {
-    background-color: #f9f9f9;
-    box-shadow: 3px 3px 10px rgb(47, 196, 255);
+    
+    box-shadow: 3px 3px 4px rgb(161, 161, 161);
     border-radius: 5px;
     padding: 1rem;
-    width: 300px;
-    background: rgb(65, 196, 248)
+    width: 400px;
+    height: 350px;
+    background: #f0f0f0
   }
   .registration-form h2{
     text-align: center;
     padding: 0.5rem;
-    color: #fafafa;
+    color: rgb(161, 161, 161);
+    
   }
   .form-group {
     margin-bottom: 15px;
@@ -24,7 +26,8 @@
   
   label {
     display: block;
-    color: cornsilk;
+    color: rgb(161, 161, 161);
+  
     font-size: 15px;
     font-weight: 500;
     margin-bottom: 5px;
@@ -43,7 +46,7 @@
     margin-bottom: 16px;
   }
   .show-password{
-    color: #fff;
+    color: rgb(117, 117, 117);
     font-size: 14px;
     margin: 5px 5px 5px 5px;
   }
@@ -51,7 +54,7 @@
   .resgistration-btn {
     width: 100%;
     padding: 10px;
-   background: rgb(40, 158, 255) ;
+   background: #5e5e5e;
     color: #fff;
     border: none;
     transition: 0.3s;
@@ -60,17 +63,19 @@
   }
   
   .resgistration-btn:hover {
-    background: rgba(25, 100, 199, 0.774);
+    background: #b3b3b3
   }
   
   .login-message{
-    color: #ffffff;
+    margin-top: 1rem;
+    color: #4b4b4b;
     font-size: 14px;
+    font-weight: 400;
   }
   .login-message span a{
     margin-left: 5px;
     margin-right: 5px;
-    color: #fff;
+    color: #5e5e5e;
     text-decoration: none;
     font-weight: 700;
     font-size: 16px;

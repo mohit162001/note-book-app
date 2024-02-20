@@ -72,6 +72,7 @@ function Login() {
   return (
     <>
       <div className="login-container">
+        <div>
         <form className="login-form" onSubmit={handleSubmit}>
           <h2>Login</h2>
           <div className="form-group">
@@ -95,14 +96,16 @@ function Login() {
             />
           </div>
           <button type="submit" className="login-btn">Login</button>
-          <p className="registration-message">
+          
+        </form>
+        <p className="registration-message">
             New user ?
             <span>
               <Link to="/register">Register</Link>
             </span>
             here
           </p>
-        </form>
+        </div>
       </div>
     </>
   );
