@@ -1,7 +1,7 @@
 import React from 'react';
 import './CSS/header.css'; 
 import { clearCredential } from '../helper';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Header() {
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ function Header() {
   }
   return (
     <header className="header">
-      <h2 className="title">DASHBOARD</h2>
+      <h2 className="title"><Link to='/'>DASHBOARD</Link></h2>
       <button onClick={handleLogout} className="logout-button">Logout</button>
     </header>
   );
