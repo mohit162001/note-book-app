@@ -90,8 +90,8 @@ ul{
     margin-bottom: 10px;
   }
   
-  .add-note-btn,
-  .sidebar-link {
+  .inactive
+   {
     display: block;
     text-align: center;
     padding: 10px;
@@ -108,3 +108,16 @@ ul{
     background-color: #e0e0e0;
   }
   
+  .active{
+    display: block;
+    text-align: center;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #d3d3d3;
+    border-radius: 5px 5px 5px 5px;
+    text-decoration: none;
+    color: #ebebeb;
+    font-weight: 600;
+    transition: background-color 0.3s;
+    background-color: #494949;
+  }
