@@ -1,22 +1,23 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import './CSS/navigation.css'
-function Navigation() {
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './CSS/sidebar.css';
+
+function SideBar() {
   return (
-    <div>
-        <nav className="sidebar">   
-         <p className='title'>ONLINE SHOP</p>       
-          <ul className="sidebar-ul">
-            <li className="sidebar-list-item">
-              <Link className="sidebar-link" to="/">Dashboard</Link>
-            </li>
-            <li className="sidebar-list-item">
-              <Link className="sidebar-link" to="/history">History</Link>
-            </li>
-          </ul>
-        </nav>
-      </div>
-  )
+    <aside className="sidebar-container">
+      <nav className="sidebar">   
+        <p className='sidebar-title'>Note Book</p>       
+        <ul className="sidebar-ul">
+          <li className="sidebar-list-item">
+            <Link className="add-note-btn" to="/note">New Note</Link>
+          </li>
+          <li className="sidebar-list-item">
+            <Link className="sidebar-link" to="/history">History</Link>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+  );
 }
 
-export default Navigation;
+export default SideBar;
