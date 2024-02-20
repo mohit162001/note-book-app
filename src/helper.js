@@ -3,6 +3,7 @@ import { redirect } from "react-router-dom"
 export function storeData(data){
     const {user,jwt} = data
     localStorage.setItem("username",user.username);
+    localStorage.setItem("uid",user.id);
     localStorage.setItem("jwt-token",jwt);
 }
 
@@ -11,7 +12,7 @@ export function checkAuth(){
     if(!token){
         return redirect('/login')
     }
-    return null
+    return null 
 }
 
 export function getToken(){
