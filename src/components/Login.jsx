@@ -2,52 +2,71 @@ import React from "react";
 import "./CSS/login.css";
 import { Link, useNavigate } from "react-router-dom";
 import { storeData } from "../helper";
+import { useMutation } from "@apollo/client";
+import { USER_LOGIN } from "../query/query";
 
 
 function Login() {
 
   const navigate = useNavigate();
 
+  const [mutationFun,{data,loading,error}] = useMutation(USER_LOGIN,{
+    onCompleted(data){
+      console.log("inside onComleted")
+      console.log(data)
+      storeData(data.login)
+      navigate("/")
+    },
+    onError(error){
+      window.alert(error)
+    }
+  })
+
   async function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     console.log(formData.get('username'))
-    const userData = {
-      identifier: formData.get("username"),
-      password: formData.get("password"),
-    };
 
-    if (userData.identifier === "" || userData.password === "") {
+      const identifier =  formData.get("username")
+      const password =  formData.get("password")
+
+    if (identifier === "" || password === "") {
       window.alert('Please enter valid input')
-    }
-    
-    if(userData.password !== "" && userData.identifier !==""){
-      try {
-        const response = await fetch("http://localhost:1337/api/auth/local",{
-          method:"POST",
-          headers:{
-            "Content-Type": "application/json",
-            "Authorization" : "bearer" 
-  
-          },
-          body:JSON.stringify(userData)
-        })
-        const resData = await response.json()
-        console.log(resData)
+    }else{
+      console.log('inside success')
+      mutationFun({variables:{
+        identifier,
+        password
+      }})
         
 
-        if(!response.ok){
-          throw new Error("Something went wrong...!")
-        }else if(response.ok){
-          console.log("Login successfully")
-          storeData(resData)
-          setTimeout(() => {
-            navigate("/")
-          }, 1000);
-        }
-      } catch (error) {
-        window.alert(error) 
-      }
+
+      // try {
+      //   const response = await fetch("http://localhost:1337/api/auth/local",{
+      //     method:"POST",
+      //     headers:{
+      //       "Content-Type": "application/json",
+      //       "Authorization" : "bearer" 
+  
+      //     },
+      //     body:JSON.stringify(userData)
+      //   })
+      //   const resData = await response.json()
+      //   console.log(resData)
+        
+
+      //   if(!response.ok){
+      //     throw new Error("Something went wrong...!")
+      //   }else if(response.ok){
+      //     console.log("Login successfully")
+      //     storeData(resData)
+      //     setTimeout(() => {
+      //       navigate("/")
+      //     }, 1000);
+      //   }
+      // } catch (error) {
+      //   window.alert(error) 
+      // }
     }
   }
   return (

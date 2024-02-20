@@ -2,59 +2,70 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./CSS/registration.css";
 import { storeData } from "../helper";
+import { useMutation } from "@apollo/client";
+import { USER_REGISTRATION } from "../query/query";
 function Registration() {
   const [isVisible, setIsVisible] = useState(false);
+
+  const [mutationFun,{data,loading,error}] = useMutation(USER_REGISTRATION,{
+    onCompleted(data){
+      console.log(data)
+      storeData(data.register)
+      navigate('/')
+    },
+    onError(error){
+      window.alert(error)
+    }
+  })
   const navigate = useNavigate();
 
   async function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
-    const userData = {
-      username: formData.get("username"),
-      email: formData.get("email"),
-      password: formData.get("password"),
-      mobileNumber: formData.get("mobilenumber"),
-    };
-    console.log(userData);
+
+      const username =  formData.get("username")
+      const email =  formData.get("email")
+      const password =  formData.get("password")    
 
     if (
-      userData.username === "" ||
-      userData.password === "" ||
-      userData.mobileNumber === "" ||
-      userData.email === ""
+      username === "" ||
+      password === "" ||
+      email === ""
     ) {
       window.alert("Please valid input");
-    } else if (userData.password.length < 6) {
+    } else if (password.length < 6) {
       window.alert("Password should has minimum 6 character");
-    } else if (
-      userData.mobileNumber.length !== 10 ||
-      userData.mobileNumber.length > 10
-    ) {
-      window.alert("Please enter valid mobile number");
+    } 
+    else{
+      mutationFun({variables:{
+        username,
+        email,
+        password,
+      }})
     }
-    try {
-      const response =await fetch("http://localhost:1337/api/auth/local/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userData),
-      });
+    // try {
+    //   const response =await fetch("http://localhost:1337/api/auth/local/register", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(userData),
+    //   });
 
-      const resData = await response.json();
-      storeData(resData)
+    //   const resData = await response.json();
+    //   storeData(resData)
 
-      if (!response.ok) {
-        throw new Error("Something went wrong................!");
-      }
-      if (response.ok) {
-        setTimeout(() => {
-          navigate("/");
-        }, 1000);
-      }
-    } catch (error) {
-      window.alert(error);
-    }
+    //   if (!response.ok) {
+    //     throw new Error("Something went wrong................!");
+    //   }
+    //   if (response.ok) {
+    //     setTimeout(() => {
+    //       navigate("/");
+    //     }, 1000);
+    //   }
+    // } catch (error) {
+    //   window.alert(error);
+    // }
   }
   return (
     <>
@@ -100,17 +111,6 @@ function Registration() {
               onClick={() => setIsVisible((prev) => !prev)}
             />
             <span className="show-password">show password</span>
-          </div>
-
-          <div className="form-group">
-            <label>Mobile Number</label>
-            <input
-              className="registration-input"
-              type="number"
-              id="mobilenumber"
-              name="mobilenumber"
-              placeholder="mobile number"
-            />
           </div>
           <button type="submit" className="resgistration-btn">Submit</button>
           <p className="login-message">
