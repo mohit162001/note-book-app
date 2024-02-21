@@ -11,13 +11,14 @@
     border-radius: 5px;
     padding: 1rem;
     width: 400px;
-    height: 350px;
+    height: 410px;
     background: #f0f0f0
   }
   .registration-form h2{
     text-align: center;
     padding: 0.5rem;
     color: rgb(161, 161, 161);
+    font-size: 2rem;
     
   }
   .form-group {
@@ -34,6 +35,7 @@
   }
   
   .registration-input{
+    font-size: 20px;
     width: 90%;
     border: none;
     padding: 10px;

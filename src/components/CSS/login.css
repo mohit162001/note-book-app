@@ -6,30 +6,35 @@
   }
   
   .login-form {
-   
     box-shadow: 3px 3px 4px rgb(161, 161, 161);
     border-radius: 5px;
     padding: 1rem;
-    width: 300px;
+    width: 400px;
+    height: 400px;
     background: #f0f0f0
   }
   .login-form h2{
     text-align: center;
     padding: 0.5rem;
+    font-size: 3rem;
     color: rgb(161, 161, 161);
   }
-  .form-group {
-    margin-bottom: 15px;
+  .login-form-group {
+    margin-bottom: 25px;
   }
   
-  label {
+  .login-label {
     display: block;
+    margin-left: 10px;
     color: rgb(161, 161, 161);
     font-size: 15px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
   }
   
     .login-input {
+      margin-top: 10px;
+    margin-left: 10px;
+    font-size: 20px;
     width: 90%;
     border: none;
     padding: 10px;
@@ -38,7 +43,9 @@
   }
   
   .login-btn {
-    width: 100%;
+    margin-top: 15px;
+    width: 95%;
+    margin-left: 10px;
     padding: 10px;
    background:  #5e5e5e;
     color: #fff;

@@ -18,7 +18,8 @@ function Login() {
       navigate("/")
     },
     onError(error){
-      window.alert(error)
+      window.alert("somethng wrong....!")
+      console.log(error)
     }
   })
 
@@ -75,8 +76,8 @@ function Login() {
         <div>
         <form className="login-form" onSubmit={handleSubmit}>
           <h2>Login</h2>
-          <div className="form-group">
-            <label htmlFor="username">Username</label>
+          <div className="login-form-group">
+            <label className="login-lable" htmlFor="username">Username</label>
             <input
             className="login-input "
               type="text"
@@ -85,8 +86,8 @@ function Login() {
               placeholder="name or email"
             />
           </div>
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
+          <div className="login-form-group">
+            <label className="login-lable" htmlFor="password">Password</label>
             <input
             className="login-input "
               type="password"
