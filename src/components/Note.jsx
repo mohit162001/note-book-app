@@ -1,10 +1,10 @@
 import { useMutation } from "@apollo/client";
 import React from "react";
-
+import './CSS/note.css'
 import { CREATE_NOTE } from "../query/query";
 
 function Note() {
-  const [mutationFun, {}] = useMutation(CREATE_NOTE, {
+  const [mutationFun,{}] = useMutation(CREATE_NOTE, {
     onCompleted(data) {
       console.log(data);
     },
@@ -42,34 +42,36 @@ function Note() {
 
   return (
     <>
-      <div className="note-container">
-        <form className="note-form" onSubmit={handleSubmit}>
-          <h2>Create your new note here</h2>
-          <div className="form-group">
-            <label htmlFor="username">Title</label>
+      <div className="note-container" >
+      <h2 className="note-h2">Create your note here</h2>
+        <div className="note-form-container">
+        <form className="note-form"  onSubmit={handleSubmit}>
+         
+          <div  className="note-title">
+            <label className="title-lable" >Title</label>
             <input
-              className="note-input "
+              className="title-input"
               type="text"
               id="title"
               name="title"
               placeholder="note title"
             />
           </div>
-          <div className="form-group">
-            <label htmlFor="password">Content</label>
+          <div >
+            <label className="content-lable">Content</label>
             <textarea
-              className="note-input"
               rows={20}
-              cols={60}
+              cols={80}
               id="content"
               name="content"
-              placeholder="content"
+              placeholder="content...."
             />
           </div>
-          <button type="submit" className="note-btn">
+          <button className="note-submit" type="submit">
             Sumbit
           </button>
         </form>
+        </div>
       </div>
     </>
   );
