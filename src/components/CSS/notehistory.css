@@ -1,0 +1,112 @@
+.notehistory{
+margin-top: 3rem;
+margin-left: 10rem;
+font-size: 1.5rem;
+width: 700px;
+height: 500px;
+}
+
+.notehistory-h2 {
+    font-size: 34px;
+    margin-bottom: 16px;
+  }
+  
+  .notehistory-table {
+    width: 150%;
+    border-collapse: collapse;
+    border: 1px solid black;
+    margin: 0px;
+  }
+  
+  .notehistory-table th,
+  .notehistory-table td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+    margin: 0px;
+    text-transform: capitalize;
+  }
+
+    
+  .notehistory-table th {
+    background-color: #f2f2f2;
+  }
+  
+  .notehistory-btn {
+    padding: 8px 16px;
+    margin-right: 8px;
+    background-color:#777;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  
+  .notehistory-btn:hover {
+    background-color:#c0bfbf;
+    color: #000000;
+  }
+  .notehistory-actions{
+    margin-right: 2rem;
+  }
+  
+  .notehistory-p {
+    font-size: 16px;
+    color: #777;
+  }
+  
+  .nonotes-container {
+    margin-top: 6rem;
+    text-align: center;
+    margin-left: 15rem;
+  }
+  
+  img {
+    width: 10rem;
+    height: 10rem;
+    object-fit: contain;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  #nonotes-h2 {
+    font-size: 3.25rem;
+    font-weight: bold;
+    color: #858585;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  #nonotes-p1 {
+    color: #5e5e5e;
+    margin-bottom: 1rem;
+    font-size: 1.6rem;
+    font-weight: 400;
+  }
+  
+  #nonotes-p2 {
+    margin-top: 2rem;
+  }
+  
+  .create-btn {
+   padding: 1rem;
+   border: none;
+   border-radius: 5px;
+   background: #5e5e5e;
+   color: #ececec;
+   transition: 0.2s;
+  }
+  .create-btn a{
+    text-decoration: none;
+    color: #ececec;
+    font-size: 20px;
+  }
+  
+  .create-btn:hover{
+    background-color: #868686;
+  }
+  .create-btn a:hover {
+    color: #ffffff;
+  }
+  
