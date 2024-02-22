@@ -6,6 +6,7 @@ export const USER_REGISTRATION = gql`
       input: { username: $username, email: $email, password: $password }
     ) {
       user {
+        id
         username
         email
       }
@@ -39,8 +40,47 @@ export const CREATE_NOTE = gql`
       data {
         attributes {
           title
+          users_permissions_user{
+            data{
+              id
+            }
+          }
         }
       }
     }
   }
 `;
+
+export const GET_NOTES = gql`
+query ($id: ID!) {
+  notes(filters:{
+    users_permissions_user:{
+     id:{
+      eq: $id
+    }
+    }
+  }){
+    data{
+      id
+      attributes{
+        title
+        date
+        }
+      }
+    }
+  }
+
+`
+export const DELETE_NOTE = gql`
+mutation($id:ID!) {
+  deleteNote(id: $id ) {
+    data {
+      id
+      attributes {
+        title
+      }
+    }
+  }
+}
+
+`

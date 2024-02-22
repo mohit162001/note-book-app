@@ -1,12 +1,13 @@
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import React from "react";
-import { GET_NOTES } from "../query/query";
+import { DELETE_NOTE, GET_NOTES } from "../query/query";
 import "./CSS/notehistory.css";
 import { Link } from "react-router-dom";
 import noNotes_img from "../assets/nonotes.png";
 function NoteHistory() {
   const id = localStorage.getItem("uid")
   const { data, loading, error } = useQuery(GET_NOTES, {
+    
    variables:{id : id}
   });
 
@@ -14,7 +15,27 @@ function NoteHistory() {
   if (data) {
     notes = data.notes.data;
   }
+  
+  const [mutationFun,{}] = useMutation(DELETE_NOTE,{
+    onCompleted(data){
+      console.log(data)
+    },
+    onError(error){
+      console.log(error)
+    }
+  })
 
+  function handleDelete(id){
+    let text = "Are you sure..?"
+    if(window.confirm(text)==true){
+      mutationFun({variables: {
+        id:id
+      }})
+    }
+
+    
+  }
+  
   return (
     <section className="notehistory">
       {!error && notes.length !== 0 && (
@@ -53,7 +74,7 @@ function NoteHistory() {
                 <td className="notehistory-actions">
                   
                   <button className="notehistory-btn">Edit</button>
-                  <button className="notehistory-btn">Delete</button>
+                  <button onClick={()=>handleDelete(note.id)} className="notehistory-btn">Delete</button>
                   <button className="notehistory-btn">View</button>
                 </td>
               </tr>
