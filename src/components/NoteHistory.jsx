@@ -2,15 +2,17 @@ import { useMutation, useQuery } from "@apollo/client";
 import React, { useEffect, useState } from "react";
 import { DELETE_NOTE, GET_NOTES } from "../query/query";
 import "./CSS/notehistory.css";
-import { Link } from "react-router-dom";
-import noNotes_img from "../assets/nonotes.png";
 import Modal from "./Modal";
 import NoteTable from "./NoteTable";
 import NoNote from "./NoNote";
+import DeleteDialog from "./DeleteDialog";
+
 
 function NoteHistory() {
   const [modalDetails, setModalDetails] = useState();
   const id = localStorage.getItem("uid");
+  const [selectedNote,setSelectedNote] = useState()
+  const [delelteDialogOpen,setDeleteDialogOpen] = useState(false)
   const { data, loading, error, refetch } = useQuery(GET_NOTES, {
     variables: { id: id },
   });
@@ -34,18 +36,25 @@ function NoteHistory() {
   });
 
   function handleDelete(id, title) {
-    let text = "Are you sure..?";
-    if (window.confirm(text) === true) {
+    setSelectedNote({ id, title }); 
+    setDeleteDialogOpen(true); 
+  }
+
+  function handleConfirmDelete() {
+    if (selectedNote) {
       mutationFun({
         variables: {
-          id: id,
-          title: title,
+          id: selectedNote.id,
+          title: selectedNote.title,
           deleted_Status: true
         },
       });
+      setDeleteDialogOpen(false);
     }
   }
-
+  function handleCancelDelete() {
+    setDeleteDialogOpen(false); 
+  }
   function handleModal(content) {
     setModalDetails(content);
   }
@@ -72,6 +81,7 @@ function NoteHistory() {
           </>
         )}
       </section>
+      <DeleteDialog open={delelteDialogOpen} handleClose={handleCancelDelete} handleConfirm={handleConfirmDelete} />
     </>
   );
 }
