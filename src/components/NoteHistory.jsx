@@ -5,17 +5,20 @@ import "./CSS/notehistory.css";
 import { Link } from "react-router-dom";
 import noNotes_img from "../assets/nonotes.png";
 import Modal from "./Modal";
+import NoteTable from "./NoteTable";
+import NoNote from "./NoNote";
+
 function NoteHistory() {
   const [modalDetails, setModalDetails] = useState();
   const id = localStorage.getItem("uid");
-  const { data, loading, error,refetch } = useQuery(GET_NOTES, {
-    // pollInterval:200,
+  const { data, loading, error, refetch } = useQuery(GET_NOTES, {
     variables: { id: id },
   });
-  
-  useEffect(()=>{
+
+  useEffect(() => {
     refetch()
-  })
+  }, [refetch]);
+
   let notes = [];
   if (data) {
     notes = data.notes.data;
@@ -30,7 +33,7 @@ function NoteHistory() {
     },
   });
 
-  function handleDelete(id,title) {
+  function handleDelete(id, title) {
     let text = "Are you sure..?";
     if (window.confirm(text) === true) {
       mutationFun({
@@ -53,7 +56,7 @@ function NoteHistory() {
 
   return (
     <>
-      {modalDetails ? <Modal handleClose={handleClose} details={modalDetails} /> :""}
+      {modalDetails && <Modal handleClose={handleClose} details={modalDetails} />}
       <section className="notehistory">
         {!error && notes.length !== 0 && (
           <h2 className="notehistory-h2">Notes History</h2>
@@ -61,49 +64,12 @@ function NoteHistory() {
         {error && <p>Something went wrong</p>}
         {loading && <p>Loading Notes......</p>}
         {!error && !loading && notes.length === 0 && (
-          <div className="nonotes-container">
-            <img src={noNotes_img} alt="" />
-            <h2 id="nonotes-h2">No Data found</h2>
-            <p id="nonotes-p1">
-              Create a <span>Note</span> first
-            </p>
-            <p id="default-p2">
-              <button className="create-btn">
-                <Link to="/">Create note</Link>
-              </button>
-            </p>
-          </div>
+          <NoNote/>
         )}
         {!error && notes.length > 0 && (
-          <table className="notehistory-table">
-            <thead>
-              <tr>
-                <th>Serial No.</th>
-                <th>Date</th>
-                <th>Title</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {notes.map((note, index) => (
-                <>
-                  <tr key={note.id}>
-                    <td>{index + 1}</td>
-                    <td>{note.attributes.date}</td>
-                    <td>{note.attributes.title}</td>
-                    <td className="notehistory-actions">
-                      <button className="notehistory-btn"><Link to= {`/${note.id}`}>Edit</Link></button>
-                      <button onClick={() => handleDelete(note.id,note.attributes.title)} className="notehistory-btn" >Delete</button>
-                      <button onClick={() => handleModal({title: note.attributes.title,content: note.attributes.content })}
-                        className="notehistory-btn" >
-                        View
-                      </button>
-                    </td>
-                  </tr>
-                </>
-              ))}
-            </tbody>
-          </table>
+          <>
+            <NoteTable notes={notes} handleDelete={handleDelete} handleModal={handleModal}/>
+          </>
         )}
       </section>
     </>
