@@ -119,14 +119,14 @@ height: 500px;
     color: #ffffff;
   }
   .delelte-p{
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin-top: 1rem;
-    margin-bottom: -15px;
+    margin-bottom: 15px;
   }
 
 
   .selected-note-title{
     font-weight: 600;
-    color: #fd5050;
+    color: #000000;
     text-transform: capitalize;
   }

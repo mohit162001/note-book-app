@@ -22,7 +22,7 @@ function DeleteDialog({open, handleClose, handleConfirm,noteTitle}) {
         </DialogTitle> */}
         <DialogContent>
           <DialogContentText>
-            <p className='delelte-p'>Are you sure? you want to delete <br/> <span className='selected-note-title'> {noteTitle}</span></p>
+            <p className='delelte-p'>Are you sure you want to delete  <span className='selected-note-title'> {noteTitle}</span>?</p>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
