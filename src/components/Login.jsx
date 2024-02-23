@@ -14,7 +14,7 @@ function Login() {
   const [severity, setSeverity] = useState("info");
 
   const navigate = useNavigate();
-  const [mutationFun, { data, loading, error }] = useMutation(USER_LOGIN, {
+  const [mutationFun, { error }] = useMutation(USER_LOGIN, {
     onCompleted(data) {
       handleSnackbarOpen('success', 'Login Succesfull');
       console.log(data);
@@ -72,7 +72,7 @@ function Login() {
   return (
     <>
     <Snackbar open={open} autoHideDuration={2000} onClose={handleSnackbarClose} anchorOrigin={{vertical:"top",horizontal:"center"}}>
-        <MuiAlert elevation={6}  onClose={handleSnackbarClose} severity={severity} sx={{fontSize: "1.2rem"}}>
+        <MuiAlert elevation={6}  onClose={handleSnackbarClose} severity={severity} sx={{fontSize: "1.4rem",width:"100%",}}>
          {message}
        </MuiAlert>
     </Snackbar>
