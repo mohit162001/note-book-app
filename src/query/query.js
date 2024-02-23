@@ -21,6 +21,7 @@ export const USER_LOGIN = gql`
       user {
         username
         id
+        email
       }
       jwt
     }

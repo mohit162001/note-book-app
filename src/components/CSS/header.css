@@ -1,34 +1,58 @@
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #7a7a7a;
-    box-shadow: 1px 1px 6px rgb(87, 87, 87);
-    padding: 0.8rem;
-  }
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #525252;
+  box-shadow: 1px 1px 6px rgb(87, 87, 87);
+  padding: 0.8rem;
+  position: relative;
+}
 
+.title a {
+  margin: 0 1rem 1rem 1rem;
+  font-size: 2.4rem;
+  color: aliceblue;
+  text-decoration: none;
+}
 
-  
-  .title a {
-    margin: 0 1rem 1rem 1rem; 
-    font-size: 2.4rem;
-    color: aliceblue;
-    text-decoration: none;
-    
-  }
-  
-  .logout-button {
-    padding: 1rem 1.6rem ;
-    cursor: pointer;
-    color: 2a2a2a;
-    font-size: 20px;
-    font-weight: 600;
-    border: none;
-    border-radius: 20px ;
-    text-align: center;
-    background: d3d3d3;
-    transition: 0.3s;
-  }
-  .logout-button:hover{
-    background: e0e0e0;
-  }
+.user-icon {
+  position: absolute;
+  background: #e0e0e0;
+  border-radius: 50%;
+  right: 10rem;
+  height: 75%;
+  display: flex;
+  align-items: center;
+  transition: 0.2s;
+}
+
+.user-icon img {
+  height: 100%;
+  width: auto;
+}
+.useractive {
+  position: absolute;
+  background: #00ff9d;
+  border-radius: 50%;
+  right: 10rem;
+  height: 75%;
+  display: flex;
+  align-items: center;
+}
+
+.logout-button {
+  padding: 1rem 1.6rem;
+  cursor: pointer;
+  color: #2a2a2a;
+  font-size: 20px;
+  font-weight: 600;
+  border: none;
+  border-radius: 20px;
+  text-align: center;
+  background: #d3d3d3;
+  transition: 0.3s;
+}
+.logout-button:hover {
+  background: #e0e0e0;
+}
