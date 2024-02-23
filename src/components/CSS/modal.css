@@ -23,6 +23,7 @@
   
   .modal-h2 {
     font-size: 40px;
+    text-transform: capitalize;
     margin-top: 1rem;
     margin-bottom: 1.6rem;
   }
