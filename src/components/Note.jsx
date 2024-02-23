@@ -59,7 +59,8 @@ function Note({ data }) {
             title:title,
             content:content,
             date:date,
-            id:id
+            id:id,
+            deleted_Status: false
           }
         });
       }
@@ -73,6 +74,7 @@ function Note({ data }) {
             content,
             date,
             id,
+            deleted_Status: false
           },
         });
       }
