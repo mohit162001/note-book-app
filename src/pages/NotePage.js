@@ -7,13 +7,15 @@ import { GET_NOTE } from '../query/query'
 function NotePage() {
   const param = useParams()
   const id = param.id
-  console.log(param.id)
-  const {data,loading,error} = useQuery(GET_NOTE,{
+  console.log("id",param.id)
+
+  const {data} = useQuery(GET_NOTE,{
     variables:{
       id: id
-    }
+    },
+    skip: !id
   })
-
+  
   console.log(data)
   return (
     <Note data={id && data}/>
