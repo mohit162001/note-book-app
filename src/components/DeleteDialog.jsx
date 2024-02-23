@@ -3,10 +3,11 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+// import DialogTitle from '@mui/material/DialogTitle';
+import './CSS/notehistory.css'
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
-function DeleteDialog({open, handleClose, handleConfirm}) {
+function DeleteDialog({open, handleClose, handleConfirm,noteTitle}) {
     const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
   return (
@@ -16,12 +17,12 @@ function DeleteDialog({open, handleClose, handleConfirm}) {
         onClose={handleClose}
         aria-labelledby="responsive-dialog-title"
       >
-        <DialogTitle>
-          {"Are you sure ?"}
-        </DialogTitle>
+        {/* <DialogTitle>
+          {<h2 className='delete-h2'>Are you sure ?</h2>}
+        </DialogTitle> */}
         <DialogContent>
           <DialogContentText>
-            Once you delte the note, This action can note be undone
+            <p className='delelte-p'>Are you sure? you want to delete <br/> <span className='selected-note-title'> {noteTitle}</span></p>
           </DialogContentText>
         </DialogContent>
         <DialogActions>

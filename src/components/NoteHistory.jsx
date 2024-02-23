@@ -81,7 +81,7 @@ function NoteHistory() {
           </>
         )}
       </section>
-      <DeleteDialog open={delelteDialogOpen} handleClose={handleCancelDelete} handleConfirm={handleConfirmDelete} />
+      <DeleteDialog open={delelteDialogOpen} handleClose={handleCancelDelete} handleConfirm={handleConfirmDelete} noteTitle={ selectedNote && selectedNote.title} />
     </>
   );
 }

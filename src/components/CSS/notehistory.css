@@ -118,4 +118,15 @@ height: 500px;
   .create-btn a:hover {
     color: #ffffff;
   }
-  
+  .delelte-p{
+    font-size: 2rem;
+    margin-top: 1rem;
+    margin-bottom: -15px;
+  }
+
+
+  .selected-note-title{
+    font-weight: 600;
+    color: #fd5050;
+    text-transform: capitalize;
+  }
