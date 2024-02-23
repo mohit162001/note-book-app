@@ -4,18 +4,23 @@ import "./CSS/registration.css";
 import { storeData } from "../helper";
 import { useMutation } from "@apollo/client";
 import { USER_REGISTRATION } from "../query/query";
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 function Registration() {
   const [isVisible, setIsVisible] = useState(false);
-
+  const [open, setOpen] = useState(false);
+  const [message, setMessage] = useState("");
+  const [severity, setSeverity] = useState("info");
   const [mutationFun,{data,loading,error}] = useMutation(USER_REGISTRATION,{
     onCompleted(data){
+      handleSnackbarOpen('success', 'Registration Successfull');
       console.log(data)
       storeData(data.register)
-      navigate('/')
+      setTimeout(() => {
+        navigate('/')
+      }, 1000);
     },
-    onError(error){
-      window.alert(error)
-    }
+
   })
   const navigate = useNavigate();
 
@@ -32,11 +37,18 @@ function Registration() {
       password === "" ||
       email === ""
     ) {
-      window.alert("Please valid input");
+      handleSnackbarOpen('warning', 'Please enter valid input');
     } else if (password.length < 6) {
-      window.alert("Password should has minimum 6 character");
-    } 
-    else{
+      handleSnackbarOpen('warning', 'Password should have 6 characters');
+    }else if(!email.includes('.com')){
+      handleSnackbarOpen('warning', 'Enter valid Email Address');
+    }else if(error){
+      if(error.message ===  "Email or Username are already taken"){
+        handleSnackbarOpen('error', error.message);
+      }else{
+        handleSnackbarOpen('error', 'Something went wrong..');
+      }
+    }else{
       mutationFun({variables:{
         username,
         email,
@@ -67,8 +79,26 @@ function Registration() {
     //   window.alert(error);
     // }
   }
+
+  const handleSnackbarOpen = (severity, message) => {
+    setSeverity(severity);
+    setMessage(message);
+    setOpen(true);
+  };
+
+  const handleSnackbarClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
   return (
     <>
+    <Snackbar open={open} autoHideDuration={2000} onClose={handleSnackbarClose} anchorOrigin={{vertical:"top",horizontal:"center"}}>
+        <MuiAlert elevation={6}  onClose={handleSnackbarClose} severity={severity} sx={{fontSize: "1.2rem"}}>
+         {message}
+       </MuiAlert>
+    </Snackbar>
       <div className="registration-container">
         <div>
         <form className="registration-form" onSubmit={handleSubmit}>

@@ -4,23 +4,30 @@ import { Link, useNavigate } from "react-router-dom";
 import { storeData } from "../helper";
 import { useMutation } from "@apollo/client";
 import { USER_LOGIN } from "../query/query";
-import { Alert, Snackbar } from "@mui/material";
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+
 
 function Login() {
+  const [open, setOpen] = useState(false);
+  const [message, setMessage] = useState("");
+  const [severity, setSeverity] = useState("info");
+
   const navigate = useNavigate();
   const [mutationFun, { data, loading, error }] = useMutation(USER_LOGIN, {
     onCompleted(data) {
-      console.log("inside onComleted");
+      handleSnackbarOpen('success', 'Login Succesfull');
       console.log(data);
       storeData(data.login);
-      navigate("/");
+      setTimeout(()=>{
+        navigate("/");
+      },1000)
     },
     onError(error) {
-      window.alert("somethng wrong....!");
+      handleSnackbarOpen('error', 'Something went wrong');
       console.log(error);
     },
   });
-
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -31,9 +38,15 @@ function Login() {
     const password = formData.get("password");
 
     if (identifier === "" || password === "") {
-      window.alert('Please enter valid input')
-
-    } else {
+      handleSnackbarOpen('error', 'Please enter valid input');
+    }else if(error){
+      if(error.message === "Invalid identifier or password"){
+        handleSnackbarOpen('warning', "Enter identifier or password");
+      }else{
+        handleSnackbarOpen('error', 'Something went wrong');
+      }
+    } 
+    else {
       mutationFun({
         variables: {
           identifier,
@@ -42,8 +55,28 @@ function Login() {
       });
     }
   }
+
+  const handleSnackbarOpen = (severity, message) => {
+    setSeverity(severity);
+    setMessage(message);
+    setOpen(true);
+  };
+
+  const handleSnackbarClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
+
   return (
     <>
+    <Snackbar open={open} autoHideDuration={2000} onClose={handleSnackbarClose} anchorOrigin={{vertical:"top",horizontal:"center"}}>
+        <MuiAlert elevation={6}  onClose={handleSnackbarClose} severity={severity} sx={{fontSize: "1.2rem"}}>
+         {message}
+       </MuiAlert>
+    </Snackbar>
+
       <div className="login-container">
         <div>
           <form className="login-form" onSubmit={handleSubmit}>
