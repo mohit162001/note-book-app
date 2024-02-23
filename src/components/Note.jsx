@@ -2,9 +2,17 @@ import { useMutation } from "@apollo/client";
 import React from "react";
 import "./CSS/note.css";
 import { CREATE_NOTE, UPDATE_NOTE } from "../query/query";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+import { useState } from "react";
+
 
 function Note({ data }) {
+  const [open, setOpen] = useState(false);
+  const [message, setMessage] = useState("");
+  const [severity, setSeverity] = useState("info");
+  const [isTitleEmpty,setIsTitleEmpty] = useState(true);
 // if(data){
 //   console.log(data.note.data.id)
 // }
@@ -12,26 +20,23 @@ function Note({ data }) {
   const [mutationFun] = useMutation(CREATE_NOTE, {
     onCompleted(data) {
       console.log(data);
-      window.alert("Note created");
+      handleSnackbarOpen('success', 'New Note create Successfully');
       setTimeout(() => {
         navigate("/history");
-      }, 1000);
+      }, 1500);
     },
     onError(error) {
       console.log(error);
     },
   });
 
-  const [updateFun] = useMutation(UPDATE_NOTE, {
+  const [updateFun,{error}] = useMutation(UPDATE_NOTE, {
     onCompleted(data) {
       console.log(data);
-      window.alert("Note updated");
+      handleSnackbarOpen('success', 'Note Updated Successfully');
       setTimeout(() => {
         navigate("/history");
-      }, 1000);
-    },
-    onError(error) {
-      console.log(error);
+      }, 1500);
     },
   });
 
@@ -50,9 +55,10 @@ function Note({ data }) {
 
     if(data){
       if (title === "") {
-        window.alert("note cannot has empty title");
+        handleSnackbarOpen('warning', 'Note title cannot be empty');
+      }else if(error){
+        handleSnackbarOpen('info', 'Unable to create note \n Please try again later');
       } else {
-        console.log("id from inside ",data.note.data.id)
         updateFun({
           variables: {
             noteId: data.note.data.id,
@@ -66,7 +72,7 @@ function Note({ data }) {
       }
     }else{
       if (title === "") {
-        window.alert("note cannot has empty title");
+        handleSnackbarOpen('warning', 'Note title cannot be empty');
       } else {
         mutationFun({
           variables: {
@@ -80,9 +86,33 @@ function Note({ data }) {
       }
     }
   }
+  function handleTitleChange(event){
+    if(event.target.value !==''){
+      setIsTitleEmpty(false)
+    }else{
+      setIsTitleEmpty(true)
+    }
+  }
+  const handleSnackbarOpen = (severity, message) => {
+    setSeverity(severity);
+    setMessage(message);
+    setOpen(true);
+  };
+
+  const handleSnackbarClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
 
   return (
     <>
+    <Snackbar open={open} autoHideDuration={2000} onClose={handleSnackbarClose} anchorOrigin={{vertical:"top",horizontal:"center"}}>
+        <MuiAlert elevation={6}  onClose={handleSnackbarClose} severity={severity} sx={{fontSize: "1.4rem",width:"100%",}}>
+         {message}
+       </MuiAlert>
+    </Snackbar>
       <div className="note-container">
         <h2 className="note-h2">Create your note here</h2>
         <div className="note-form-container">
@@ -90,6 +120,7 @@ function Note({ data }) {
             <div className="note-title">
               <label className="title-lable">Title</label>
               <input
+                onChange={handleTitleChange}
                 className="title-input"
                 type="text"
                 id="title"
@@ -110,11 +141,16 @@ function Note({ data }) {
               />
             </div>
             {data ? (
+             <div className="note-update-action">
              <button className="note-submit" type="submit" >
                 Update
               </button>
+              <button className="note-update-cancle" type="button" >
+                <Link to='/'>Cancle</Link>
+              </button>
+             </div>
             ) : (
-              <button className="note-submit" type="submit">
+              <button disabled={isTitleEmpty} className="note-submit" type="submit">
               Submit
             </button>
             )}
