@@ -18,7 +18,7 @@ function NotePage() {
   
   console.log(data)
   return (
-    <Note data={id && data}/>
+    <Note key={id} data={id && data}/>
   )
 }
 
