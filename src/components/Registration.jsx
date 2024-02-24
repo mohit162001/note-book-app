@@ -45,15 +45,7 @@ function Registration() {
       handleSnackbarOpen("warning", "Password should have 6 characters");
     } else if (!email.includes(".com")) {
       handleSnackbarOpen("warning", "Enter valid Email Address");
-    }
-    if(error){
-      if (error.message === "Email or Username are already taken") {
-        handleSnackbarOpen("error", "Email or Username are already taken");
-      } else {
-        handleSnackbarOpen("error", "Something went wrong..");
-      }
-    }
-    if (!error) {
+    } else{
       mutationFun({
         variables: {
           username,
@@ -96,7 +88,7 @@ function Registration() {
       <div className="registration-container">
         <div>
           <form className="registration-form" onSubmit={handleSubmit}>
-            <h2>Registration</h2>
+            <h2 className="registration-h2">Registration</h2>
             <div className="form-group">
               <label>Username</label>
               <input

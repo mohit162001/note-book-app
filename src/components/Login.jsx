@@ -14,7 +14,7 @@ function Login() {
   const [severity, setSeverity] = useState("info");
 
   const navigate = useNavigate();
-  const [mutationFun, { error }] = useMutation(USER_LOGIN, {
+  const [mutationFun] = useMutation(USER_LOGIN, {
     onCompleted(data) {
       handleSnackbarOpen('success', 'Login Succesfull');
       console.log(data);
@@ -24,7 +24,11 @@ function Login() {
       },1000)
     },
     onError(error) {
-      handleSnackbarOpen('error', 'Something went wrong');
+      if(error.message === "Invalid identifier or password"){
+        handleSnackbarOpen('warning', "Enter identifier or password");
+      }else{
+        handleSnackbarOpen('error', 'Something went wrong');
+      }
       console.log(error);
     },
   });
@@ -39,14 +43,7 @@ function Login() {
 
     if (identifier === "" || password === "") {
       handleSnackbarOpen('error', 'Please enter valid input');
-    }else if(error){
-      if(error.message === "Invalid identifier or password"){
-        handleSnackbarOpen('warning', "Enter identifier or password");
-      }else{
-        handleSnackbarOpen('error', 'Something went wrong');
-      }
-    } 
-    else {
+    }else {
       mutationFun({
         variables: {
           identifier,
@@ -80,7 +77,7 @@ function Login() {
       <div className="login-container">
         <div>
           <form className="login-form" onSubmit={handleSubmit}>
-            <h2>Login</h2>
+            <h2 className="login-h2">Login</h2>
             <div className="login-form-group">
               <label className="login-lable" htmlFor="username">
                 Username
