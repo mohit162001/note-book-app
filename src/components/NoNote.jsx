@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./CSS/notehistory.css";
 import { Link } from "react-router-dom";
 import noNotes_img from "../assets/nonotes.png";
+import { TextContext } from "../Context/NoteBookContext";
 function NoNote() {
+  const {handleTextChange}  =useContext(TextContext)
   return (
     <div className="nonotes-container">
       <img src={noNotes_img} alt="" />
@@ -12,7 +14,7 @@ function NoNote() {
       </p>
       <p id="default-p2">
         <button className="create-btn">
-          <Link to="/">Create note</Link>
+          <Link onClick={()=>handleTextChange(true)} to="/">Create note</Link>
         </button>
       </p>
     </div>

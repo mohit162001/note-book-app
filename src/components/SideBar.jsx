@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import "./CSS/sidebar.css";
+import { TextContext } from "../Context/NoteBookContext";
 
 function SideBar() {
   const { id } = useParams();
-  const [text, setText] = useState(true);
+  const {textState,handleTextChange} = useContext(TextContext)
+  console.log(textState)
   return (
     <aside className="sidebar-container">
       <nav className="sidebar">
@@ -13,7 +15,7 @@ function SideBar() {
           {id ? (
             <li className="sidebar-list-item">
               <NavLink
-                onClick={() => setText(true)}
+                onClick={() => handleTextChange(true)}
                 className={({ isActive }) => (isActive ? "active" : "inactive")}
                 to={`${id}`}
               >
@@ -23,17 +25,17 @@ function SideBar() {
           ) : (
             <li className="sidebar-list-item">
               <NavLink
-                onClick={() => setText(true)}
+                onClick={() => handleTextChange(true)}
                 className={({ isActive }) => (isActive ? "active" : "inactive")}
                 to="/"
               >
-                {text ? "New Note" : "Add New Note"}
+                {textState ? "New Note" : "Add New Note"}
               </NavLink>
             </li>
           )}
           <li className="sidebar-list-item">
             <NavLink
-              onClick={() => setText(false)}
+              onClick={() => handleTextChange(false)}
               className={({ isActive }) => (isActive ? "active" : "inactive")}
               to="/history"
             >

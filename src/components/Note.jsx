@@ -1,11 +1,12 @@
 import { useMutation } from "@apollo/client";
-import React from "react";
+import React, { useContext } from "react";
 import "./CSS/note.css";
 import { CREATE_NOTE, UPDATE_NOTE } from "../query/query";
 import { Link, useNavigate } from "react-router-dom";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import { useState } from "react";
+import { TextContext } from "../Context/NoteBookContext";
 
 
 function Note({ data }) {
@@ -13,9 +14,7 @@ function Note({ data }) {
   const [message, setMessage] = useState("");
   const [severity, setSeverity] = useState("info");
   const [isTitleEmpty,setIsTitleEmpty] = useState(true);
-// if(data){
-//   console.log(data.note.data.id)
-// }
+  const {handleTextChange} = useContext(TextContext)
   const navigate = useNavigate();
   const [mutationFun] = useMutation(CREATE_NOTE, {
     onCompleted(data) {
@@ -146,7 +145,7 @@ function Note({ data }) {
                 Update
               </button>
               <button className="note-update-cancle" type="button" >
-                <Link to='/'>Cancle</Link>
+                <Link onClick={()=>handleTextChange(true)} to='/'>Cancle</Link>
               </button>
              </div>
             ) : (
