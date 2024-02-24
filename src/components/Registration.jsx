@@ -80,7 +80,7 @@ function Registration() {
           elevation={6}
           onClose={handleSnackbarClose}
           severity={severity}
-          sx={{ fontSize: "1.4rem", padding: "2rem", width: "100%" }}
+          sx={{ fontSize: "1.4rem", width: "100%" }}
         >
           {message}
         </MuiAlert>
@@ -113,6 +113,7 @@ function Registration() {
 
             <div className="form-group">
               <label>Password</label>
+              <div className="password-feild">
               <input
                 className="registration-input"
                 type={isVisible ? "text" : "password"}
@@ -120,15 +121,18 @@ function Registration() {
                 name="password"
                 placeholder="password"
               />
+              <span onClick={() => setIsVisible((prev) => !prev)} className="password-eye"><i className="far fa-eye"></i></span>
+              </div>
             </div>
 
-            <div className="show">
+            {/* <div className="show">
               <input
                 type="checkbox"
                 onClick={() => setIsVisible((prev) => !prev)}
               />
+              
               <span className="show-password">show password</span>
-            </div>
+            </div> */}
             <button type="submit" className="resgistration-btn">
               Submit
             </button>

@@ -13,9 +13,9 @@ function NoNote() {
         Create a <span>Note</span> first
       </p>
       <p id="default-p2">
-        <button className="create-btn">
-          <Link onClick={()=>handleTextChange(true)} to="/">Create note</Link>
-        </button>
+        
+          <Link onClick={()=>handleTextChange(true)} to="/"><button className="create-btn">Create note</button></Link>
+        
       </p>
     </div>
   );

@@ -23,6 +23,7 @@
   
   .modal-h2 {
     font-size: 40px;
+    color: #00246B;
     text-transform: capitalize;
     margin-top: 1rem;
     margin-bottom: 1.6rem;
@@ -50,7 +51,7 @@
     margin-bottom: 0.7rem;
     font-size: 1.3rem;
     border: none;
-    background-color:#494949;
+    background-color: #8AAAE5;; 
     color: white;
     transition: 0.2s;
     cursor: pointer;
@@ -63,13 +64,13 @@
     font-size: 1.3rem;
     border: none;
     background-color:transparent;
-    color:#494949;
+    color:#00246B;
     transition: 0.2s;
     cursor: pointer;
     border-radius: 4px;
   }
   .modal-close-btn:hover {
-    color: #494949;
-    background-color: rgb(211, 211, 211);
+    color: #ffffff;
+    background-color: #00246B;
   }
   

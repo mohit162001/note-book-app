@@ -7,27 +7,27 @@
   
   .registration-form {
     
-    box-shadow: 3px 3px 4px rgb(161, 161, 161);
-    border-radius: 5px;
-    padding: 1rem;
+    box-shadow: 3px 4px 15px  #4f74b9;
+    border-radius: 5px; 
+    padding: 2rem;
     width: 400px;
-    height: 410px;
-    background: #f0f0f0
+    height: 425px;
+    background: #CADCFC; 
   }
-  .registration-form h2{
+  .registration-h2{
     text-align: center;
     padding: 0.5rem;
-    color: rgb(161, 161, 161);
-    font-size: 2rem;
+    color: #00246B;
+    font-size: 2.5rem;
     
   }
   .form-group {
     margin-bottom: 15px;
   }
   
-  label {
+  label{
     display: block;
-    color: rgb(161, 161, 161);
+    color: #303179;
   
     font-size: 15px;
     font-weight: 500;
@@ -36,7 +36,7 @@
   
   .registration-input{
     font-size: 20px;
-    width: 90%;
+    width: 95%;
     border: none;
     padding: 10px;
     outline: none;
@@ -48,16 +48,18 @@
     margin-bottom: 16px;
   }
   .show-password{
-    color: rgb(117, 117, 117);
-    font-size: 14px;
+    color: #00246B;
+    font-size: 18px;
     margin: 5px 5px 5px 5px;
   }
   
   .resgistration-btn {
+    margin-top: 10px;
     width: 100%;
     padding: 10px;
-   background: #5e5e5e;
-    color: #fff;
+    font-size: 1.2rem;
+   background: #759de6;
+    color: #00246B;
     border: none;
     transition: 0.3s;
     border-radius: 3px;
@@ -65,24 +67,36 @@
   }
   
   .resgistration-btn:hover {
-    background: #b3b3b3
+    background: #00246B;
+    color: #ffffff;
   }
   
   .login-message{
     margin-top: 1rem;
-    color: #4b4b4b;
-    font-size: 14px;
+    color: #00246B;
+    font-size: 18px;
     font-weight: 400;
   }
   .login-message span a{
     margin-left: 5px;
     margin-right: 5px;
-    color: #5e5e5e;
+    color: #00246B;
     text-decoration: none;
     font-weight: 700;
-    font-size: 16px;
+    font-size: 18px;
   }
   .login-message span a:hover{
-    color: #000000;
+    color: #8AAAE5;
+    cursor: pointer;
+  }
+
+  .password-feild{
+    display: flex;
+  }
+
+  .password-eye{
+    padding-top: 12px;
+    padding-right: 10px;
+    background: white;
     cursor: pointer;
   }

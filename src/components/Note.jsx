@@ -25,7 +25,7 @@ function Note({ data }) {
       }, 1500);
     },
     onError(error) {
-      console.log(error);
+      handleSnackbarOpen('error', 'Something went wrong');
     },
   });
 
@@ -149,7 +149,7 @@ function Note({ data }) {
               </button>
              </div>
             ) : (
-              <button disabled={isTitleEmpty} className="note-submit" type="submit">
+              <button disabled={isTitleEmpty} className={isTitleEmpty?'note-submit-inactive':"note-submit"} type="submit">
               Submit
             </button>
             )}
