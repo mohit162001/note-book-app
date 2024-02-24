@@ -86,7 +86,7 @@ function Note({ data }) {
     }
   }
   function handleTitleChange(event){
-    if(event.target.value !==''){
+    if(event.target.value.trim() !==''){
       setIsTitleEmpty(false)
     }else{
       setIsTitleEmpty(true)
