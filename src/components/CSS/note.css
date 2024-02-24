@@ -1,0 +1,120 @@
+.note-container {
+    display: flex;
+    margin-top: -15px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    height: 50vh;
+  }
+
+  .note-h2{
+    color:#00246B;
+    font-size: 2.6rem;
+    margin-top: 1rem;
+  
+  }
+  
+  .note-form-container {
+    width: 80%;
+    margin-left: 3rem;
+  }
+  .note-title{
+    margin-left: 52.4rem;
+    margin-bottom: -15px;
+  }
+  ::placeholder{
+    color: #00246b80;
+  }
+  .title-input{
+    background: #cadcfca6;
+    width: 99%;
+    font-size: 1.4rem;
+    padding: 0.2rem;
+    border: none;
+    outline: none;
+  }
+  .note-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  /* h2 {
+    align-self: flex-start;
+  }
+   */
+  label {
+    font-size: 30px;
+    margin-top: 10px;
+  }
+  .title-lable{
+    margin-left: 34rem;
+  }
+  .content-lable{
+    margin-top: 20px;
+    margin-left: 83rem;
+  }
+  textarea {
+    width: 99.7%;
+  }
+  
+  textarea {
+    background: #cadcfca6;
+    font-size: 1.6rem;
+    height: 60vh;
+    border: none;
+    outline: none;
+    resize: none;
+  }
+  
+  .note-submit{
+    margin-left: 38rem;
+    text-align: center;
+    padding: 15px 25px;
+    margin-top: 10px;
+    background-color:#8AAAE5;;
+    border: none;
+    border-radius: 5px 5px 5px 5px;
+    text-decoration: none;
+    color: #00246B;
+    font-size: 20px;
+    transition: background-color 0.3s;
+  }
+  .note-submit:hover{
+    color: #ffffff;
+    background: #00246B;
+  }
+  .note-submit-inactive{
+    margin-left: 38rem;
+    text-align: center;
+    padding: 15px 25px;
+    margin-top: 10px;
+    background-color:#8aaae59c;;
+    border: none;
+    border-radius: 5px 5px 5px 5px;
+    text-decoration: none;
+    color: #00246B;
+    font-size: 20px;
+    transition: background-color 0.3s;
+  }
+  .note-update-action{
+    display: flex;
+  }
+  .note-update-cancle{
+    margin-left: 1rem; 
+    text-align: center;
+    padding: 15px 25px;
+    margin-top: 10px;
+    background-color:transparent;
+    border: none;
+    border-radius: 5px 5px 5px 5px;
+    text-decoration: none;
+    color: #f0f0f0;
+    font-size: 20px;
+    transition: background-color 0.3s;
+  }
+
+  .note-update-cancle a{
+    text-decoration: none;
+    color:#6e6e6e
+  }

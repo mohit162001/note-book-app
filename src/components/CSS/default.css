@@ -1,0 +1,54 @@
+.default-container {
+    margin-top: 6rem;
+    text-align: center;
+    width: 66.6667%;
+  }
+  
+  img {
+    width: 7rem;
+    height: 7rem; 
+    object-fit: contain;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  #default-h2 {
+    font-size: 2.25rem;
+    font-weight: bold;
+    color: #858585;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  #default-p1 {
+    color: #5e5e5e;
+    margin-bottom: 1rem;
+    font-size: 1.6rem;
+    font-weight: 400;
+  }
+  
+  #default-p2 {
+    margin-top: 2rem;
+  }
+  
+  .create-btn {
+   padding: 1rem;
+   border: none;
+   border-radius: 5px;
+   background: #5e5e5e;
+   color: #ececec;
+   transition: 0.2s;
+  }
+  .create-btn a{
+    text-decoration: none;
+    color: #ececec;
+    font-size: 20px;
+  }
+  
+  .create-btn:hover{
+    background-color: #868686;
+  }
+  .create-btn a:hover {
+    color: #ffffff;
+  }
+  

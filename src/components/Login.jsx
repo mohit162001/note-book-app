@@ -1,50 +1,111 @@
-import React from "react";
+import React, { useState } from "react";
 import "./CSS/login.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { storeData } from "../helper";
+import { useMutation } from "@apollo/client";
+import { USER_LOGIN } from "../query/query";
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
 
 function Login() {
+  const [open, setOpen] = useState(false);
+  const [message, setMessage] = useState("");
+  const [severity, setSeverity] = useState("info");
+
+  const navigate = useNavigate();
+  const [mutationFun] = useMutation(USER_LOGIN, {
+    onCompleted(data) {
+      handleSnackbarOpen('success', 'Login Succesfull');
+      console.log(data);
+      storeData(data.login);
+      setTimeout(()=>{
+        navigate("/");
+      },1000)
+    },
+    onError(error) {
+      if(error.message === "Invalid identifier or password"){
+        handleSnackbarOpen('warning', "Enter identifier or password");
+      }else{
+        handleSnackbarOpen('error', 'Something went wrong');
+      }
+      console.log(error);
+    },
+  });
+
   async function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
-    console.log(formData.get('username'))
-    const userData = {
-      identifier: formData.get("username"),
-      password: formData.get("password"),
-    };
+    console.log(formData.get("username"));
 
-    if (userData.identifier === "" || userData.password === "") {
-      window.alert('Please enter valid input')
+    const identifier = formData.get("username");
+    const password = formData.get("password");
+
+    if (identifier === "" || password === "") {
+      handleSnackbarOpen('error', 'Please enter valid input');
+    }else {
+      mutationFun({
+        variables: {
+          identifier,
+          password,
+        },
+      });
     }
-    console.log(userData)
-    window.alert("submitted...!")
   }
+
+  const handleSnackbarOpen = (severity, message) => {
+    setSeverity(severity);
+    setMessage(message);
+    setOpen(true);
+  };
+
+  const handleSnackbarClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
+
   return (
     <>
+    <Snackbar open={open} autoHideDuration={2000} onClose={handleSnackbarClose} anchorOrigin={{vertical:"top",horizontal:"center"}}>
+        <MuiAlert elevation={6}  onClose={handleSnackbarClose} severity={severity} sx={{fontSize: "1.4rem",width:"100%",}}>
+         {message}
+       </MuiAlert>
+    </Snackbar>
+
       <div className="login-container">
-        <form className="login-form" onSubmit={handleSubmit}>
-          <h2>Login</h2>
-          <div className="form-group">
-            <label htmlFor="username">Username</label>
-            <input
-            className="login-input "
-              type="text"
-              id="username"
-              name="username"
-              placeholder="name or email"
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input
-            className="login-input "
-              type="password"
-              id="password"
-              name="password"
-              placeholder="password"
-            />
-          </div>
-          <button type="submit">Login</button>
+        <div>
+          <form className="login-form" onSubmit={handleSubmit}>
+            <h2 className="login-h2">Login</h2>
+            <div className="login-form-group">
+              <label className="login-lable" htmlFor="username">
+                Username
+              </label>
+              <input
+                className="login-input "
+                type="text"
+                id="username"
+                name="username"
+                placeholder="name or email"
+              />
+            </div>
+            <div className="login-form-group">
+              <label className="login-lable" htmlFor="password">
+                Password
+              </label>
+              <input
+                className="login-input "
+                type="password"
+                id="password"
+                name="password"
+                placeholder="password"
+              />
+            </div>
+            <button type="submit" className="login-btn">
+              Login
+            </button>
+          </form>
           <p className="registration-message">
             New user ?
             <span>
@@ -52,7 +113,7 @@ function Login() {
             </span>
             here
           </p>
-        </form>
+        </div>
       </div>
     </>
   );
