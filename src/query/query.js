@@ -53,7 +53,7 @@ export const CREATE_NOTE = gql`
     }
   }
 `;
-
+                       
 export const GET_NOTES = gql`
   query ($id: ID!) {
     notes(filters: {

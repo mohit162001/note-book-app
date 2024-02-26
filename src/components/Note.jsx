@@ -62,7 +62,7 @@ function Note({ data }) {
           variables: {
             noteId: data.note.data.id,
             title:title,
-            content:content,
+            content:content, 
             date:date,
             id:id,
             deleted_Status: false
