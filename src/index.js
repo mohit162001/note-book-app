@@ -11,7 +11,7 @@ import { setContext } from '@apollo/client/link/context';
 // })
 
 const httpLink = createHttpLink({
-  uri: 'https://note-book-app-backend.vercel.app/'
+  uri: 'http://localhost:1337/graphql'
 
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('jwt-token');
